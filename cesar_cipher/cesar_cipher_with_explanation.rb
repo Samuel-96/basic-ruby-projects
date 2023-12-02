@@ -1,19 +1,25 @@
+# Implement a caesar cipher that takes in a string and the shift factor and then outputs the 
+# modified string:
+# caesar_cipher("What a string!", 5) => "Bmfy f xywnsl!"
+
 def cesar_cipher(string, shift)
 
     palabra_convertida = []
 
-    # divido el string en un array, y para cada letra del array...
+    # each_char itera sobre cada letra del array
     string.each_char do |letra|
-
+        
         # compruebo la letra, si no es una letra es que es un simbolo (?, ¡, espacio...)
         if letra.between?("A", "Z") || letra.between?("a","z")
 
             # el numero de movimientos que tengo que hacer, letra.next devuelve la siguiente letra del abecedario
             shift.times do
+                # esta variable letra no es la iteradora del array
                 letra = letra.next
             end
-    
-            # si la letra es z, .next devuelve [ab], por lo que nos quedamos sólo con el último caracter, si no la letra no ha dado la vuelta al abc
+
+            # si la letra es z, .next devuelve [ab], por lo que nos quedamos sólo con el penúltimo caracter
+            # si next no devuelve un array con más de un caracter es que la letra no ha dado la vuelta al abc asi que la guardamos con push
             letra.length > 1 ? palabra_convertida.push(letra[-1]) : palabra_convertida.push(letra)
         else
             # si la letra es un simbolo no lo convierto
